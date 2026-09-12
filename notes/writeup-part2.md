@@ -16,9 +16,9 @@ In the end, after discussing it with some online friends, I picked osu!stream. W
 
 (forgive the choppiness, it was recorded with [SysDVR](https://github.com/exelix11/sysdvr), the game runs at stable 60fps on console)
 
-https://github.com/user-attachments/assets/48c32b21-51e0-458a-a4ce-1e18bff9b953
+https://github.com/user-attachments/assets/942f46d6-3284-4efa-9b8f-0bd91c92a2be
 
-The source code is [available on GitHub](https://github.com/exelix11/osu-stream-nx) under the original MIT license. However, note that the osu! trademark is owned by the original author and, for the time being, I have not published a binary release of the port. You can build it yourself by following the instructions in the README but you should comply with the original license and not distribute it without permission from the original author.
+Given the unofficial nature of this port and the fact that osu itself is trademarked, this port is called Nx!stream. The source code is [available on GitHub](https://github.com/exelix11/nx-stream) under the original MIT license.
 
 ## Porting C# games
 
