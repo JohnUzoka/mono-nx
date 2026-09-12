@@ -1,25 +1,28 @@
 # mono-nx
 
-This is an unofficial port of the mono runtime to the switch homebrew toolchain. It can run dotnet 9.0 applications using the mono interpreter by loading the dll or exe files directly on console. It can also build .NET assemblies as static libraries using mono AOT.
+This is an unofficial port of the mono runtime to the switch homebrew toolchain. It can run dotnet 9.0 applications or games using the mono interpreter by loading the dll or exe files directly on console. It can also build .NET assemblies as static libraries using mono AOT.
 
 https://github.com/user-attachments/assets/ab57d77b-67ed-4c05-8017-9a1706f8c645
 
 This is a clip of a [C# file explorer](managed/explorer_demo) with a GUI powered by SDL and imgui running on console.
 More clips: [pad_demo](https://github.com/user-attachments/assets/ca9f7be8-cdde-4dae-8391-abbc80c1953b) and [guess_number](https://github.com/user-attachments/assets/1588dbc6-5fd3-4991-8f53-dc53a64074a6)
 
-If you're curious about the process of porting mono to a weird platform I documented some of the challenges I faced and my workarounds in this [write-up](notes/writeup.md).
+If you're curious about the process of porting mono to a weird platform I documented some of the challenges I faced and my workarounds in these write-ups:
+- [Part 1](notes/writeup.md): porting mono and its dependencies.
+- [Part 2](notes/writeup-part2.md): porting a real game on top of mono and fixing more runtime bugs.
 
-While a few things do work this at the proof-of-concept stage with minimal testing, you probably don't want to use this to actually make homebrew. While I would love to continue working on this project, it requires too much effort for a single person. For the time being I don't plan active development.
+While a few things do work this at the proof-of-concept stage with little testing. While I would love to continue working on this project, it requires too much effort for a single person. For the time being I don't plan active development.
 
 ## What works
 
 - Common BCL classes such as `List`, `StringBuilder` and so on
+- Threads, async and filesystem APIs
 - P/Invoke, but only with libraries that were statically linked beforehand
-- Threads and async
-- Most of filesystem APIs
 - Sockets and http-only support for `HttpClient`
-- .NET wrappers for SDL2 and [dear imgui](https://github.com/ocornut/imgui) which are included as static libraries
 - Unit tests with XHarness (some dotnet repo tests are even passing!)
+
+The demo programs show how to use SDL2 and [dear imgui](https://github.com/ocornut/imgui) for rendering.
+Additionally, I also ported [OpenTK](https://github.com/exelix11/osu-stream-nx/tree/master/OpenTK) in my efforts to port [Osu!Stream](https://github.com/user-attachments/assets/48c32b21-51e0-458a-a4ce-1e18bff9b953), see the [full repo](https://github.com/exelix11/osu-stream-nx/tree/master)
 
 Overall both the interpreter and AOT seem rather stable and can run complex programs or games.
 
@@ -49,6 +52,8 @@ You will probably want to setup one of the logging options in [config.ini](sd_fi
 DllImport/PInvoke for functions that are not statically defined in [dl_shim.c](native/shared/dl_shim.c) requires to use a custom build of the interpreter, in such cases you should fork the `native/` folder and add your external libraries to a dl_shim file, then build the NRO. For this you will need the mono static libraries distributed as part of the SDK release.
 
 AOT requires [additional steps](notes/aot.md)
+
+You can see an example of porting a real game in my [osu-stream-nx](https://github.com/exelix11/osu-stream-nx/tree/master) repo and the relevant [write up](notes/writeup-part2.md).
 
 > [!IMPORTANT]  
 > Reminder for when you **will** hit things that do not work. **this is an unsupported port, do NOT open issues on the real dotnet/runtime.**. If you want to help document what is broken you can open an issue in this repo, but as of now there is no support.
