@@ -22,7 +22,7 @@ While a few things do work this at the proof-of-concept stage with little testin
 - Unit tests with XHarness (some dotnet repo tests are even passing!)
 
 The demo programs show how to use SDL2 and [dear imgui](https://github.com/ocornut/imgui) for rendering.
-Additionally, I also ported [OpenTK](https://github.com/exelix11/osu-stream-nx/tree/master/OpenTK) in my efforts to port [Osu!Stream](https://github.com/user-attachments/assets/48c32b21-51e0-458a-a4ce-1e18bff9b953), see the [full repo](https://github.com/exelix11/osu-stream-nx/tree/master)
+Additionally, I also ported [OpenTK](https://github.com/exelix11/nx-stream/tree/master/OpenTK) in my efforts to [port Osu!Stream](https://github.com/user-attachments/assets/942f46d6-3284-4efa-9b8f-0bd91c92a2be), see the [full repo](https://github.com/exelix11/nx-stream)
 
 Overall both the interpreter and AOT seem rather stable and can run complex programs or games.
 
@@ -53,7 +53,7 @@ DllImport/PInvoke for functions that are not statically defined in [dl_shim.c](n
 
 AOT requires [additional steps](notes/aot.md)
 
-You can see an example of porting a real game in my [osu-stream-nx](https://github.com/exelix11/osu-stream-nx/tree/master) repo and the relevant [write up](notes/writeup-part2.md).
+You can see an example of porting a real game in my [osu!stream switch port](https://github.com/exelix11/nx-stream) and the relevant [write up](notes/writeup-part2.md).
 
 > [!IMPORTANT]  
 > Reminder for when you **will** hit things that do not work. **this is an unsupported port, do NOT open issues on the real dotnet/runtime.**. If you want to help document what is broken you can open an issue in this repo, but as of now there is no support.
