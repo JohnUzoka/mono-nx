@@ -63,6 +63,15 @@ void *getsym_Kernel32(const char *name) { return getsym_kernel32(name); }
 void *getsym_User32(const char *name) { return getsym_user32(name); }
 void *getsym_Shell32(const char *name) { return getsym_shell32(name); }
 
+void *getsym_Gdi32(const char *name) { return (void*)generic_stub; }
+void *getsym_gdi32(const char *name) { return (void*)generic_stub; }
+void *getsym_Ole32(const char *name) { return (void*)generic_stub; }
+void *getsym_Uxtheme(const char *name) { return (void*)generic_stub; }
+void *getsym_UxTheme(const char *name) { return (void*)generic_stub; }
+void *getsym_Winmm(const char *name) { return (void*)generic_stub; }
+void *getsym_Advapi32(const char *name) { return (void*)generic_stub; }
+void *getsym_Comdlg32(const char *name) { return (void*)generic_stub; }
+
 // --- Native File Dialog (nfd) ---
 // Terraria uses NFD for file open/save dialogs. On Switch there's no dialog.
 void *getsym_nfd(const char *name)

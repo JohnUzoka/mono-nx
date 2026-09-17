@@ -63,6 +63,14 @@ REGISTER_LIBRARY(kernel32, "kernel32.dll", 0x123)
 REGISTER_LIBRARY(User32, "User32", 0x124)
 REGISTER_LIBRARY(user32, "user32.dll", 0x125)
 REGISTER_LIBRARY(Shell32, "shell32.dll", 0x126)
+REGISTER_LIBRARY(Gdi32, "gdi32", 0x129)
+REGISTER_LIBRARY(gdi32, "gdi32.dll", 0x12A)
+REGISTER_LIBRARY(Ole32, "ole32.dll", 0x12B)
+REGISTER_LIBRARY(Uxtheme, "uxtheme", 0x12C)
+REGISTER_LIBRARY(UxTheme, "UXTheme", 0x12D)
+REGISTER_LIBRARY(Winmm, "winmm.dll", 0x12E)
+REGISTER_LIBRARY(Advapi32, "advapi32.dll", 0x12F)
+REGISTER_LIBRARY(Comdlg32, "comdlg32.dll", 0x130)
 REGISTER_LIBRARY(nfd, "nfd", 0x127)
 REGISTER_LIBRARY(dav1dfile, "dav1dfile", 0x128)
 #endif
@@ -119,6 +127,14 @@ void *dlshim_loadLibrary(const char *name, int flags, char **err, void *user_dat
 	CHECK_LIB_NAME(name, User32);
 	CHECK_LIB_NAME(name, user32);
 	CHECK_LIB_NAME(name, Shell32);
+	CHECK_LIB_NAME(name, Gdi32);
+	CHECK_LIB_NAME(name, gdi32);
+	CHECK_LIB_NAME(name, Ole32);
+	CHECK_LIB_NAME(name, Uxtheme);
+	CHECK_LIB_NAME(name, UxTheme);
+	CHECK_LIB_NAME(name, Winmm);
+	CHECK_LIB_NAME(name, Advapi32);
+	CHECK_LIB_NAME(name, Comdlg32);
 	CHECK_LIB_NAME(name, nfd);
 	CHECK_LIB_NAME(name, dav1dfile);
 	#endif
@@ -196,6 +212,14 @@ void *dlshim_getSymbol(void *handle, const char *name, char **err, void *user_da
 	CHECK_LIB_SYMBOL(User32)
 	CHECK_LIB_SYMBOL(user32)
 	CHECK_LIB_SYMBOL(Shell32)
+	CHECK_LIB_SYMBOL(Gdi32)
+	CHECK_LIB_SYMBOL(gdi32)
+	CHECK_LIB_SYMBOL(Ole32)
+	CHECK_LIB_SYMBOL(Uxtheme)
+	CHECK_LIB_SYMBOL(UxTheme)
+	CHECK_LIB_SYMBOL(Winmm)
+	CHECK_LIB_SYMBOL(Advapi32)
+	CHECK_LIB_SYMBOL(Comdlg32)
 	CHECK_LIB_SYMBOL(nfd)
 	CHECK_LIB_SYMBOL(dav1dfile)
 	#endif
