@@ -25,6 +25,9 @@ REGISTER_LIBRARY(CompressionNative, "libSystem.IO.Compression.Native", 0x05)
 #if defined(DLSHIM_SDL2)
 REGISTER_LIBRARY(SDL2, "SDL2", 0x100)
 #endif
+#if defined(DLSHIM_SDL3)
+REGISTER_LIBRARY(SDL3, "SDL3", 0x106)
+#endif
 
 #if defined(DLSHIM_SDL2_IMAGE)
 REGISTER_LIBRARY(SDL2_image, "SDL2_image", 0x101)
@@ -78,6 +81,9 @@ void *dlshim_loadLibrary(const char *name, int flags, char **err, void *user_dat
 
     #if defined(DLSHIM_SDL2)
 	CHECK_LIB_NAME(name, SDL2);
+	#endif
+	#if defined(DLSHIM_SDL3)
+	CHECK_LIB_NAME(name, SDL3);
 	#endif
 
 	#if defined(DLSHIM_SDL2_IMAGE)
@@ -152,6 +158,9 @@ void *dlshim_getSymbol(void *handle, const char *name, char **err, void *user_da
 
 	#if defined(DLSHIM_SDL2)
 		CHECK_LIB_SYMBOL(SDL2)
+	#endif
+	#if defined(DLSHIM_SDL3)
+		CHECK_LIB_SYMBOL(SDL3)
 	#endif
 
 	#if defined(DLSHIM_SDL2_IMAGE)
