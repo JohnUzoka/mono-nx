@@ -43,6 +43,15 @@ REGISTER_LIBRARY(Glad, "glad", 0x104)
 REGISTER_LIBRARY(OpenAl, "openal32.dll", 0x105)
 #endif
 
+// FNA native libraries
+#if defined(DLSHIM_FNA3D)
+REGISTER_LIBRARY(FNA3D, "FNA3D", 0x110)
+#endif
+
+#if defined(DLSHIM_FNA)
+REGISTER_LIBRARY(FNAudio, "FAudio", 0x111)
+#endif
+
 void *dlshim_loadLibrary(const char *name, int flags, char **err, void *user_data)
 {
     if (!name)
@@ -74,6 +83,14 @@ void *dlshim_loadLibrary(const char *name, int flags, char **err, void *user_dat
 	#if defined(DLSHIM_OPENAL)
 	CHECK_LIB_NAME(name, OpenAl);
 	#endif	
+
+	#if defined(DLSHIM_FNA3D)
+	CHECK_LIB_NAME(name, FNA3D);
+	#endif
+
+	#if defined(DLSHIM_FNA)
+	CHECK_LIB_NAME(name, FNAudio);
+	#endif
 
 	if (g_config.mononx_logging)
     	io_debugf("dlshim_loadLibrary %s library=%s", "unknown library", name);
@@ -127,6 +144,14 @@ void *dlshim_getSymbol(void *handle, const char *name, char **err, void *user_da
 
 	#if defined(DLSHIM_OPENAL)
 		CHECK_LIB_SYMBOL(OpenAl)
+	#endif
+
+	#if defined(DLSHIM_FNA3D)
+	CHECK_LIB_SYMBOL(FNA3D)
+	#endif
+
+	#if defined(DLSHIM_FNA)
+	CHECK_LIB_SYMBOL(FNAudio)
 	#endif
 	}
 
