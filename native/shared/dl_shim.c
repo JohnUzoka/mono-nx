@@ -50,6 +50,19 @@ REGISTER_LIBRARY(FNA3D, "FNA3D", 0x110)
 
 #if defined(DLSHIM_FNA)
 REGISTER_LIBRARY(FNAudio, "FAudio", 0x111)
+
+// Stub libraries — return 0 for all symbols
+#if defined(DLSHIM_STUBS)
+REGISTER_LIBRARY(SteamAPI64, "SteamAPI64", 0x120)
+REGISTER_LIBRARY(SteamAPI, "SteamAPI", 0x121)
+REGISTER_LIBRARY(Kernel32, "Kernel32.dll", 0x122)
+REGISTER_LIBRARY(kernel32, "kernel32.dll", 0x123)
+REGISTER_LIBRARY(User32, "User32", 0x124)
+REGISTER_LIBRARY(user32, "user32.dll", 0x125)
+REGISTER_LIBRARY(Shell32, "shell32.dll", 0x126)
+REGISTER_LIBRARY(nfd, "nfd", 0x127)
+REGISTER_LIBRARY(dav1dfile, "dav1dfile", 0x128)
+#endif
 #endif
 
 void *dlshim_loadLibrary(const char *name, int flags, char **err, void *user_data)
@@ -90,6 +103,18 @@ void *dlshim_loadLibrary(const char *name, int flags, char **err, void *user_dat
 
 	#if defined(DLSHIM_FNA)
 	CHECK_LIB_NAME(name, FNAudio);
+	#endif
+
+	#if defined(DLSHIM_STUBS)
+	CHECK_LIB_NAME(name, SteamAPI64);
+	CHECK_LIB_NAME(name, SteamAPI);
+	CHECK_LIB_NAME(name, Kernel32);
+	CHECK_LIB_NAME(name, kernel32);
+	CHECK_LIB_NAME(name, User32);
+	CHECK_LIB_NAME(name, user32);
+	CHECK_LIB_NAME(name, Shell32);
+	CHECK_LIB_NAME(name, nfd);
+	CHECK_LIB_NAME(name, dav1dfile);
 	#endif
 
 	if (g_config.mononx_logging)
@@ -152,6 +177,18 @@ void *dlshim_getSymbol(void *handle, const char *name, char **err, void *user_da
 
 	#if defined(DLSHIM_FNA)
 	CHECK_LIB_SYMBOL(FNAudio)
+	#endif
+
+	#if defined(DLSHIM_STUBS)
+	CHECK_LIB_SYMBOL(SteamAPI64)
+	CHECK_LIB_SYMBOL(SteamAPI)
+	CHECK_LIB_SYMBOL(Kernel32)
+	CHECK_LIB_SYMBOL(kernel32)
+	CHECK_LIB_SYMBOL(User32)
+	CHECK_LIB_SYMBOL(user32)
+	CHECK_LIB_SYMBOL(Shell32)
+	CHECK_LIB_SYMBOL(nfd)
+	CHECK_LIB_SYMBOL(dav1dfile)
 	#endif
 	}
 
